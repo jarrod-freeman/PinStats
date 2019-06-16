@@ -1,2 +1,2 @@
 # ReactDemo
-Demo app for learnig react
+Demo app for learnig react using IFPA API
