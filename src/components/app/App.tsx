@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {Route, NavLink, HashRouter} from 'react-router-dom'
 import Profile from '../ifpa/ProfileComponent';
+import TournamentComponent from '../ifpa/tournament/TournamentComponent';
 import HomeComponent from '../HomeComponent';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
         <div>
           <Route exact path="/" component={HomeComponent} />
-          <Route path="/tournaments" component={Profile} />
+          <Route path="/tournaments" component={TournamentComponent} />
           <Route path="/players" component={Profile} />
         </div>
       </HashRouter>

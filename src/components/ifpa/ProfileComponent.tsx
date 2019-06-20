@@ -7,9 +7,7 @@ class ProfileComponent extends Component{
 
     public render(){
         return (
-            <div className="Profile">
-                Test
-            </div>
+            <h2>Player Search</h2>
         );
     }
 }
