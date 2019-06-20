@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import Tournament from '../../../models/ifpa/Tournament';
+import  './TournamentList.css'
 
 type MyProps = { };
 type MyState = { tournamentList: Array<Tournament> };
 
-class TournamentComponent extends Component<MyProps, MyState>{
+class TournamentListComponent extends Component<MyProps, MyState>{
     constructor(props: MyProps){
         super(props);
 
@@ -22,15 +23,15 @@ class TournamentComponent extends Component<MyProps, MyState>{
             if(data && data.tournament){
                 var tournaments = data.tournament.map((x: any) => {
                    return new Tournament({
-                       ID: x.tournament_id, 
+                       ID: +x.tournament_id, 
                        Name: x.tournament_name,
                        EventName: x.event_name,
-                       EventDate: x.event_id,
+                       EventDate: new Date(x.event_date),
                        WinnerName: x.winner_name,
-                       WinnerID: x.winner_player_id,
+                       WinnerID: +x.winner_player_id,
                        CountryCode: x.country_code,
                        CountryName: x.country_name,
-                       PlayerCount: x.player_count
+                       PlayerCount: +x.player_count
                     });
                 });
                 
@@ -43,7 +44,15 @@ class TournamentComponent extends Component<MyProps, MyState>{
         return (
             <div>
                 <h2>Tournaments</h2>
-                <table>
+                <table className="tournaments">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Tournament Name</td>
+                            <td>Event name</td>
+                            <td>Event Date</td>
+                        </tr>
+                    </thead>
                     <tbody>
                         {this.state.tournamentList.map((e: Tournament, i: number) => {
                                 return(
@@ -52,7 +61,7 @@ class TournamentComponent extends Component<MyProps, MyState>{
                                             <td>{e.ID}</td>
                                             <td>{e.Name}</td>
                                             <td>{e.EventName}</td>
-                                            <td>{e.EventDate}</td>
+                                            <td>{e.EventDate.toDateString()}</td>
                                         </tr>
                                     </Fragment>
                                 )
@@ -64,4 +73,4 @@ class TournamentComponent extends Component<MyProps, MyState>{
     }
 }
 
-export default TournamentComponent;
+export default TournamentListComponent;
