@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import Tournament from '../../../models/ifpa/Tournament';
-import  './TournamentList.css'
+import  '../../../css/TournamentList.css'
 
 type MyProps = { };
 type MyState = { tournamentList: Array<Tournament> };
