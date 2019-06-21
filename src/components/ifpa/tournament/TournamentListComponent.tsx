@@ -1,8 +1,11 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, MouseEvent} from 'react';
+import { History } from 'history';
 import Tournament from '../../../models/ifpa/Tournament';
+import Location from '../../../models/ifpa/Location';
+import Event from '../../../models/ifpa/Event';
 import  '../../../css/TournamentList.css'
 
-type MyProps = { };
+type MyProps = { history: History };
 type MyState = { tournamentList: Array<Tournament> };
 
 class TournamentListComponent extends Component<MyProps, MyState>{
@@ -25,12 +28,16 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                    return new Tournament({
                        ID: +x.tournament_id, 
                        Name: x.tournament_name,
-                       EventName: x.event_name,
-                       EventDate: new Date(x.event_date),
-                       WinnerName: x.winner_name,
-                       WinnerID: +x.winner_player_id,
-                       CountryCode: x.country_code,
-                       CountryName: x.country_name,
+                       Location: new Location({
+                           CountryCode: x.country_code,
+                           CountryName: x.country_name,
+                        }),
+                       Events: new Array<Event>(new Event({
+                           Name: x.event_name,
+                           Date: new Date(x.event_date),
+                           WinnerID: +x.winner_player_id,
+                           WinnerName: x.winner_name,
+                       })),
                        PlayerCount: +x.player_count
                     });
                 });
@@ -38,6 +45,10 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                 this.setState({tournamentList: tournaments});
             }
         });
+    }
+
+    private navigate(event: MouseEvent, tournamentID: number){
+        this.props.history.push('/tournament/' + tournamentID);
     }
 
     public render(){
@@ -57,11 +68,11 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                         {this.state.tournamentList.map((e: Tournament, i: number) => {
                                 return(
                                     <Fragment key={i}>
-                                        <tr>
+                                        <tr onClick={(event: MouseEvent) => this.navigate(event, e.ID) }>
                                             <td>{e.ID}</td>
                                             <td>{e.Name}</td>
-                                            <td>{e.EventName}</td>
-                                            <td>{e.EventDate.toDateString()}</td>
+                                            <td>{e.Events[0].Name}</td>
+                                            <td>{e.Events[0].Date.toDateString()}</td>
                                         </tr>
                                     </Fragment>
                                 )
@@ -69,7 +80,7 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                     </tbody>
                 </table>
             </div>
-    );
+        );
     }
 }
 

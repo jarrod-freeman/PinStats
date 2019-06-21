@@ -1,16 +1,18 @@
+import Location from './Location';
+import Event from './Event';
 
 export default class Tournament{
     ID: number;
-    CountryCode: string;
-    CountryName: string;
-    EventDate: Date;
-    EventName: string;
-    PlayerCount: number;
     Name: string;
-    WinnerName: string;
-    WinnerID: number;
+    Location: Location;
+    Website: string;
+    Events: Array<Event>;
+    PlayerCount: number;
+    ContactName: string;
 
     constructor(args: Partial<Tournament>){
+        this.Events = new Array<Event>();
+        
         Object.assign(this, args);
     } 
 }

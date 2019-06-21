@@ -3,6 +3,7 @@ import '../../css/App.css';
 import {Route, NavLink, HashRouter} from 'react-router-dom'
 import Profile from '../ifpa/ProfileComponent';
 import TournamentListComponent from '../ifpa/tournament/TournamentListComponent';
+import TournamentDetailsComponent, { TournamentDetailsProps } from '../ifpa/tournament/TournamentDetailsComponent';
 import HomeComponent from '../HomeComponent';
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
 
         <div>
           <Route exact path="/" component={HomeComponent} />
-          <Route path="/tournaments" component={TournamentListComponent} />
+          <Route exact path="/tournaments" component={TournamentListComponent} />
+          <Route path="/tournament/:ID" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent ID={props.match.params.ID} /> } } />
           <Route path="/players" component={Profile} />
         </div>
       </HashRouter>
