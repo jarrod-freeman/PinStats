@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TournamentListComponent from './TournamentListComponent';
+import TournamentList from './TournamentList';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<TournamentListComponent />, div);
+  ReactDOM.render(<TournamentList />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

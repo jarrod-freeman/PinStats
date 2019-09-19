@@ -21,7 +21,7 @@ class TournamentDetailsComponent extends Component<RouteParams, MyState>{
     }
 
     public componentDidMount(){
-        fetch('https://api.ifpapinball.com/v1/tournament/' + this.props.ID + '?api_key=')
+        fetch(`https://api.ifpapinball.com/v1/tournament/${this.props.ID}?api_key=${process.env.REACT_APP_API_KEY}`)
         .then(response => {
             return response.json();
         })
@@ -67,7 +67,7 @@ class TournamentDetailsComponent extends Component<RouteParams, MyState>{
                         {this.state.tournament.Events.map((e: Event, i: number) => {
                             return(
                                 <Fragment key={i}>
-                                    <li>{e.Name != undefined ? e.Name : 'Unknown'}</li>
+                                    <li>{e.Name !== undefined ? e.Name : 'Unknown'}</li>
                                 </Fragment>
                             )
                         })}

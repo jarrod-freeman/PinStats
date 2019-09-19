@@ -2,11 +2,11 @@ import React from 'react';
 import '../../css/App.css';
 import {Route, NavLink, HashRouter} from 'react-router-dom'
 import Profile from '../ifpa/ProfileComponent';
-import TournamentListComponent from '../ifpa/tournament/TournamentListComponent';
+import TournamentList from '../ifpa/tournament/TournamentList';
 import TournamentDetailsComponent, { TournamentDetailsProps } from '../ifpa/tournament/TournamentDetailsComponent';
 import HomeComponent from '../HomeComponent';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <h1>IFPA API Explorer</h1>
@@ -19,7 +19,7 @@ function App() {
 
         <div>
           <Route exact path="/" component={HomeComponent} />
-          <Route exact path="/tournaments" component={TournamentListComponent} />
+          <Route exact path="/tournaments" component={TournamentList} />
           <Route path="/tournament/:ID" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent ID={props.match.params.ID} /> } } />
           <Route path="/players" component={Profile} />
         </div>

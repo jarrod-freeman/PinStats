@@ -1,30 +1,19 @@
-import React, {Component, Fragment, MouseEvent} from 'react';
+import React, {FunctionComponent, Fragment, MouseEvent, useEffect, useState} from 'react';
+import axios from 'axios';
 import { History } from 'history';
 import Tournament from '../../../models/ifpa/Tournament';
 import Location from '../../../models/ifpa/Location';
 import Event from '../../../models/ifpa/Event';
 import  '../../../css/TournamentList.css'
 
-type MyProps = { history: History };
-type MyState = { tournamentList: Array<Tournament> };
-
-class TournamentListComponent extends Component<MyProps, MyState>{
-    constructor(props: MyProps){
-        super(props);
-
-        this.state = {
-            tournamentList: new Array<Tournament>()
-        }
-    }
-
-    public componentDidMount(){
-        fetch('https://api.ifpapinball.com/v1/tournament/list?api_key=&start_pos=0&count=50')
+const TournamentList: FunctionComponent = () => {
+    const [tournamentList, setTournamentList] = useState(new Array<Tournament>());
+    
+    useEffect(() => {
+        axios.get(`https://api.ifpapinball.com/v1/tournament/list?api_key=${process.env.REACT_APP_API_KEY}&start_pos=0&count=50`)
         .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            if(data && data.tournament){
-                var tournaments = data.tournament.map((x: any) => {
+            if(response && response.data && response.data.tournament){
+                var tournaments = response.data.tournament.map((x: any) => {
                    return new Tournament({
                        ID: +x.tournament_id, 
                        Name: x.tournament_name,
@@ -42,17 +31,16 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                     });
                 });
                 
-                this.setState({tournamentList: tournaments});
+                setTournamentList(tournaments);
             }
         });
+    }, []);
+
+    const navigate = (event: MouseEvent, tournamentID: number) => {
+        //history.pushState('/tournament/' + tournamentID, "");
     }
 
-    private navigate(event: MouseEvent, tournamentID: number){
-        this.props.history.push('/tournament/' + tournamentID);
-    }
-
-    public render(){
-        return (
+    return (
             <div>
                 <h2>Tournaments</h2>
                 <table className="tournaments">
@@ -65,10 +53,10 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.tournamentList.map((e: Tournament, i: number) => {
+                        {tournamentList.map((e: Tournament, i: number) => {
                                 return(
                                     <Fragment key={i}>
-                                        <tr onClick={(event: MouseEvent) => this.navigate(event, e.ID) }>
+                                        <tr onClick={(event: MouseEvent) => navigate(event, e.ID) }>
                                             <td>{e.ID}</td>
                                             <td>{e.Name}</td>
                                             <td>{e.Events[0].Name}</td>
@@ -81,7 +69,6 @@ class TournamentListComponent extends Component<MyProps, MyState>{
                 </table>
             </div>
         );
-    }
 }
 
-export default TournamentListComponent;
+export default TournamentList;
