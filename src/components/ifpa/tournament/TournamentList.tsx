@@ -1,10 +1,11 @@
-import React, {FunctionComponent, Fragment, MouseEvent, useEffect, useState} from 'react';
+import React, { FunctionComponent, Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
-import { History } from 'history';
 import Tournament from '../../../models/ifpa/Tournament';
 import Location from '../../../models/ifpa/Location';
 import Event from '../../../models/ifpa/Event';
-import  '../../../css/TournamentList.css'
+import {Link} from 'react-router-dom';
+import  '../../../css/TournamentList.css';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 
 const TournamentList: FunctionComponent = () => {
     const [tournamentList, setTournamentList] = useState(new Array<Tournament>());
@@ -36,37 +37,35 @@ const TournamentList: FunctionComponent = () => {
         });
     }, []);
 
-    const navigate = (event: MouseEvent, tournamentID: number) => {
-        //history.pushState('/tournament/' + tournamentID, "");
-    }
-
     return (
             <div>
                 <h2>Tournaments</h2>
-                <table className="tournaments">
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>Tournament Name</td>
-                            <td>Event name</td>
-                            <td>Event Date</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tournamentList.map((e: Tournament, i: number) => {
-                                return(
-                                    <Fragment key={i}>
-                                        <tr onClick={(event: MouseEvent) => navigate(event, e.ID) }>
-                                            <td>{e.ID}</td>
-                                            <td>{e.Name}</td>
-                                            <td>{e.Events[0].Name}</td>
-                                            <td>{e.Events[0].Date.toDateString()}</td>
-                                        </tr>
-                                    </Fragment>
-                                )
-                        })}
-                    </tbody>
-                </table>
+                <div className="tournaments">
+                    <Table >
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>ID</TableCell>
+                                <TableCell>Tournament Name</TableCell>
+                                <TableCell>Event name</TableCell>
+                                <TableCell>Event Date</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {tournamentList.map((e: Tournament, i: number) => {
+                                    return(
+                                        <Fragment key={i}>
+                                            <TableRow>
+                                                <TableCell><Link to={"/Tournament/" + e.ID + "/" + e.Events[0].Name} >{e.ID}</Link></TableCell>
+                                                <TableCell>{e.Name}</TableCell>
+                                                <TableCell>{e.Events[0].Name}</TableCell>
+                                                <TableCell>{e.Events[0].Date.toDateString()}</TableCell>
+                                            </TableRow>
+                                        </Fragment>
+                                    )
+                            })}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
         );
 }

@@ -20,7 +20,7 @@ const App = () => {
         <div>
           <Route exact path="/" component={HomeComponent} />
           <Route exact path="/tournaments" component={TournamentList} />
-          <Route path="/tournament/:ID" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent ID={props.match.params.ID} /> } } />
+          <Route path="/tournament/:TournamentID/:EventName" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent TournamentID={props.match.params.TournamentID}  EventName={props.match.params.EventName} /> } } />
           <Route path="/players" component={Profile} />
         </div>
       </HashRouter>

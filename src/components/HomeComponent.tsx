@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
-class HomeComponent extends Component{
-    constructor(props: any){
-        super(props);
-    }
-
+class HomeComponent extends Component {
     public render(){
         return (
             <div>

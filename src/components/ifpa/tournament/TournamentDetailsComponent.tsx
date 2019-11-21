@@ -1,4 +1,4 @@
-import React, {Component, Fragment, Props} from 'react';
+import React, {Component, Props} from 'react';
 import {RouteComponentProps} from 'react-router-dom'
 import Tournament from '../../../models/ifpa/Tournament';
 import Location from '../../../models/ifpa/Location';
@@ -6,7 +6,8 @@ import Event from '../../../models/ifpa/Event';
 import  '../../../css/TournamentList.css'
 
 type RouteParams = {
-      ID: string 
+      TournamentID: string,
+      EventName: string
   }
 
 type MyState = { tournament: Tournament };
@@ -21,7 +22,7 @@ class TournamentDetailsComponent extends Component<RouteParams, MyState>{
     }
 
     public componentDidMount(){
-        fetch(`https://api.ifpapinball.com/v1/tournament/${this.props.ID}?api_key=${process.env.REACT_APP_API_KEY}`)
+        fetch(`https://api.ifpapinball.com/v1/tournament/${this.props.TournamentID}?api_key=${process.env.REACT_APP_API_KEY}`)
         .then(response => {
             return response.json();
         })
@@ -40,11 +41,14 @@ class TournamentDetailsComponent extends Component<RouteParams, MyState>{
                 });
 
                 if(data.tournament.events){
-                    tournament.Events = data.tournament.events.map((event: any) =>{
+                    tournament.Events = data.tournament.events.map((event: any) => {
+                        //Events is an array, but it appears that there is only ever a single event per tournament.
+                        //Despite what the documentation says, the event_name is not returned via this api method. Instead
+                        //we'll just pass it from the previous page where the API does return it when listing tournaments.
                         return new Event({
-                            ID: +event.event_id,
+                            ID: +data.tournament.tournament_id,
                             Date: new Date(event.event_date),
-                            Name: event.event_name,
+                            Name: this.props.EventName,
                             WinnerID: +event.winner_player_id,
                             WinnerName: event.winner_first_name + ' ' + event.winner_last_name
                         });
@@ -55,23 +59,33 @@ class TournamentDetailsComponent extends Component<RouteParams, MyState>{
             }
         });
     }
+    
+    public getEventWinner(){
+        if(this.state.tournament.Events && this.state.tournament.Events.length > 0){
+            return this.state.tournament.Events[0].WinnerName;
+        }
+
+        return null;
+    }
+
+    public getEventDate(){
+        if(this.state.tournament.Events && this.state.tournament.Events.length > 0){
+            return this.state.tournament.Events[0].Date.toLocaleDateString();
+        }
+
+        return null;
+    }
 
     public render(){
         return (
             <div>
-                <h2>{this.state.tournament.Name}</h2>
+                <h2>{this.state.tournament.Name} - {this.props.EventName}</h2>
 
                 <div>
-                    <h3>Events</h3>
-                    <ul>
-                        {this.state.tournament.Events.map((e: Event, i: number) => {
-                            return(
-                                <Fragment key={i}>
-                                    <li>{e.Name !== undefined ? e.Name : 'Unknown'}</li>
-                                </Fragment>
-                            )
-                        })}
-                    </ul>
+                    Winner: {this.getEventWinner()}
+                </div>
+                <div>
+                    Date: {this.getEventDate()}
                 </div>
             </div>
         );
