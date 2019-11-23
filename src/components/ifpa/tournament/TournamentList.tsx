@@ -1,12 +1,10 @@
 import React, { FunctionComponent, useEffect, useState, MouseEvent, ChangeEvent } from 'react';
-import axios from 'axios';
 import Tournament from '../../../models/ifpa/Tournament';
-import Location from '../../../models/ifpa/Location';
-import Event from '../../../models/ifpa/Event';
 import { Link } from 'react-router-dom';
 import  '../../../css/TournamentList.css';
 import { Table, TableBody, TableCell, TableHead, TableRow, TableFooter, TablePagination } from '@material-ui/core';
 import TablePaginationActions from '../../common/TablePaginationActions';
+import tournamentService from '../../../services/tournaments';
 
 const TournamentList: FunctionComponent = () => {
     const pageSizes = [10, 20, 50, 100];
@@ -16,39 +14,11 @@ const TournamentList: FunctionComponent = () => {
     const [rowsPerPage, setRowsPerPage] = useState(pageSizes[0]);
     
     useEffect(() => {
-        axios.get(`https://api.ifpapinball.com/v1/tournament/list?api_key=${process.env.REACT_APP_API_KEY}&start_pos=${page * rowsPerPage}&count=${rowsPerPage}`)
-        .then(response => {
-            if(response && response.data){
-                if(response.data.tournament){
-                    var tournaments = response.data.tournament.map((x: any) => {
-                       return new Tournament({
-                           ID: +x.tournament_id, 
-                           Name: x.tournament_name,
-                           Location: new Location({
-                               CountryCode: x.country_code,
-                               CountryName: x.country_name,
-                            }),
-                           Events: new Array<Event>(new Event({
-                               Name: x.event_name,
-                               Date: new Date(x.event_date),
-                               WinnerID: +x.winner_player_id,
-                               WinnerName: x.winner_name,
-                           })),
-                           PlayerCount: +x.player_count
-                        });
-                    });
-                    
-                    setTournamentList(tournaments);
-                }
-                else{
-                    setTournamentList(new Array<Tournament>());
-                }
-    
-                if(response.data.total_results){
-                    setTournamentCount(parseInt(response.data.total_results, 10));
-                }
-            }
-        });
+        tournamentService.getTournaments(page * rowsPerPage, rowsPerPage)
+            .then(response => {
+                setTournamentList(response.Tournaments);
+                setTournamentCount(response.TotalCount);
+            });
     }, [page, rowsPerPage]);
 
     const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
