@@ -1,20 +1,16 @@
-.tournaments{
+.tournaments {
     margin: auto;
     display: table;
     border-collapse: collapse;
+    width: 100%;
 }
 
-.tournaments thead{
+.tournaments thead {
     font-weight: bold;
     background-color: cornflowerblue
 }
 
-.tournaments td{
-    border: 1px solid lightgrey;
-    padding: 10px;
-}
-
-.tournaments tbody{
+.tournaments {
     background-color: whitesmoke;
     color: black;
 }
