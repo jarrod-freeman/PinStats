@@ -1,4 +1,3 @@
-
 export default class Event{
     ID: number;
     Date: Date;
@@ -7,6 +6,6 @@ export default class Event{
     WinnerName: string;
 
     constructor(args: Partial<Event>){
-        Object.assign(this, args)
+        Object.assign(this, args);
     }
 }

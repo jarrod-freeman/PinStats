@@ -14,7 +14,7 @@ const getTournaments = async (startPos: number, count: number) => {
         if(response.data.tournament){
             var tournaments = response.data.tournament.map((x: any) => {
                 return new Tournament({
-                    ID: parseInt(x.tournament_id, 10), 
+                    ID: parseInt(x.tournament_id, 10),
                     Name: x.tournament_name,
                     Location: new Location({
                         CountryCode: x.country_code,
@@ -29,7 +29,7 @@ const getTournaments = async (startPos: number, count: number) => {
                     PlayerCount: parseInt(x.player_count, 10)
                 });
             });
-            
+
             results.Tournaments = tournaments;
         }
 

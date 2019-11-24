@@ -1,5 +1,5 @@
-import React, {FunctionComponent, Props, useState, useEffect} from 'react';
-import {RouteComponentProps} from 'react-router-dom';
+import React, { FunctionComponent, Props, useState, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Tournament from '../../../models/ifpa/Tournament';
 import  '../../../css/TournamentList.css';
 import tournamentService from '../../../services/tournaments';
@@ -7,7 +7,7 @@ import tournamentService from '../../../services/tournaments';
 interface RouteParams {
     TournamentID: string,
     EventName: string
-};
+}
 
 const TournamentDetailsComponent: FunctionComponent<any> = (props: RouteParams) => {
     const [tournament, setTournament] = useState(new Tournament({}));
@@ -23,14 +23,14 @@ const TournamentDetailsComponent: FunctionComponent<any> = (props: RouteParams) 
                 }
             });
     }, []);
-    
+
     const getEventWinner = () => {
         if(tournament.Events && tournament.Events.length > 0){
             return tournament.Events[0].WinnerName;
         }
 
         return null;
-    }
+    };
 
     const getEventDate = () => {
         if(tournament.Events && tournament.Events.length > 0){
@@ -38,7 +38,7 @@ const TournamentDetailsComponent: FunctionComponent<any> = (props: RouteParams) 
         }
 
         return null;
-    }
+    };
 
     return (
         <div>
@@ -52,7 +52,7 @@ const TournamentDetailsComponent: FunctionComponent<any> = (props: RouteParams) 
             </div>
         </div>
     );
-}
+};
 
 export interface TournamentDetailsProps extends RouteComponentProps<RouteParams>, Props<RouteParams> {}
 export default TournamentDetailsComponent;

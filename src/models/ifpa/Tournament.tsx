@@ -12,7 +12,7 @@ export default class Tournament{
 
     constructor(args: Partial<Tournament>){
         this.Events = new Array<Event>();
-        
+
         Object.assign(this, args);
-    } 
+    }
 }

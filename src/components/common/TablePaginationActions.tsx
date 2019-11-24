@@ -14,35 +14,35 @@ interface TablePaginationActionsProps {
 }
 
 const useStyles1 = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexShrink: 0,
-      marginLeft: theme.spacing(2.5),
-    },
-  }),
+    createStyles({
+        root: {
+            flexShrink: 0,
+            marginLeft: theme.spacing(2.5),
+        },
+    }),
 );
 
 const TablePaginationActions: FunctionComponent<any> = (props: TablePaginationActionsProps) => {
     const classes = useStyles1();
     const theme = useTheme();
     const { count, page, rowsPerPage, onChangePage } = props;
-  
+
     const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, 0);
     };
-  
+
     const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, page - 1);
     };
-  
+
     const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, page + 1);
     };
-  
+
     const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
     };
-  
+
     return (
         <div className={classes.root}>
             <IconButton

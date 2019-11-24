@@ -12,7 +12,7 @@ const TournamentList: FunctionComponent = () => {
     const [tournamentCount, setTournamentCount] = useState(0);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(pageSizes[0]);
-    
+
     useEffect(() => {
         tournamentService.getTournaments(page * rowsPerPage, rowsPerPage)
             .then(response => {
@@ -47,12 +47,12 @@ const TournamentList: FunctionComponent = () => {
                         {tournamentList.map((e: Tournament, i: number) => {
                             return(
                                 <TableRow key={i}>
-                                    <TableCell><Link to={"/tournaments/" + e.ID + "/" + e.Events[0].Name} >{e.ID}</Link></TableCell>
+                                    <TableCell><Link to={'/tournaments/' + e.ID + '/' + e.Events[0].Name} >{e.ID}</Link></TableCell>
                                     <TableCell>{e.Name}</TableCell>
                                     <TableCell>{e.Events[0].Name}</TableCell>
                                     <TableCell>{e.Events[0].Date.toDateString()}</TableCell>
                                 </TableRow>
-                            )
+                            );
                         })}
                     </TableBody>
                     <TableFooter>
@@ -73,6 +73,6 @@ const TournamentList: FunctionComponent = () => {
             </div>
         </div>
     );
-}
+};
 
 export default TournamentList;

@@ -1,4 +1,3 @@
-
 export default class Location{
     City: string;
     State: string;
@@ -7,5 +6,5 @@ export default class Location{
 
     constructor(args: Partial<Location>){
         Object.assign(this, args);
-    } 
+    }
 }

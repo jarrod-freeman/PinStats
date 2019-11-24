@@ -7,7 +7,7 @@ const Header = () => {
     return(
         <div className="headerWrapper">
             <div className="header">
-                <img className="logo" src={logo} alt={"logo"} />
+                <img className="logo" src={logo} alt={'logo'} />
                 <div className="title"><Link to="/">Pin Stats</Link></div>
             </div>
         </div>

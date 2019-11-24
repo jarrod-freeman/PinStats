@@ -7,5 +7,5 @@ export default class TournamentList {
     constructor(){
         this.Tournaments = new Array<Tournament>();
         this.TotalCount = 0;
-    } 
-};
+    }
+}

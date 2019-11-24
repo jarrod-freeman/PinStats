@@ -1,4 +1,3 @@
-
 export default class PlayerStats{
     CurrentRank: number;
     LastMonthRank: number;

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, ChangeEvent, useState, useEffect } from 'react';
+import React, { FunctionComponent, ChangeEvent, useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
@@ -23,7 +23,7 @@ const ProfileComponent: FunctionComponent = () => {
 
     const playerSearchChange = (e:ChangeEvent<HTMLInputElement>) => {
         setPlayerSearchValue(e.target.value);
-    }
+    };
 
     return (
         <div>
@@ -41,14 +41,14 @@ const ProfileComponent: FunctionComponent = () => {
                     return(
                         <Grid container>
                             <Grid item>
-                                {option.FirstName + ' ' + option.LastName} 
+                                {option.FirstName + ' ' + option.LastName}
                             </Grid>
                         </Grid>
-                    )
+                    );
                 }}
             />
         </div>
     );
-}
+};
 
 export default ProfileComponent;
