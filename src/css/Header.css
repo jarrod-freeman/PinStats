@@ -10,9 +10,10 @@
 .header .title {
     padding-left: 35px;
     display: inline;
-    font-weight: bold;
-    font-size: 36px;
+    font-weight: 600;
+    font-size: 46px;
     vertical-align: top;
+    line-height: 64px;
 }
 
 .header .title a {

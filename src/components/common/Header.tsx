@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/Header.css';
-import logo from '../../images/logo.png'; //https://owips.com/clipart-9823639
+import logo from '../../images/logo.png'; //https://owips.com/clipart-16893677
 
 const Header = () => {
     return(
