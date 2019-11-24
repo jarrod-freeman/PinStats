@@ -34,7 +34,7 @@ const TournamentList: FunctionComponent = () => {
         <div>
             <h3>Tournaments</h3>
             <div className="tournaments">
-                <Table >
+                <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
