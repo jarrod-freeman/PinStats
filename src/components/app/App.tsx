@@ -2,6 +2,7 @@ import React from 'react';
 import '../../css/App.css';
 import { HashRouter, Route } from 'react-router-dom';
 import Header from '../common/Header';
+import Footer from '../common/Footer';
 import NavMenu from '../common/NavMenu';
 import Profile from '../ifpa/ProfileComponent';
 import TournamentList from '../ifpa/tournament/TournamentList';
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="/players" component={Profile} />
                 </div>
             </HashRouter>
+            <Footer />
         </div>
     );
 };
