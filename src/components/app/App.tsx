@@ -18,7 +18,7 @@ const App = () => {
                 <div className="content">
                     <Route exact path="/" component={HomeComponent} />
                     <Route exact path="/tournaments" component={TournamentList} />
-                    <Route path="/tournament/:TournamentID/:EventName" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent TournamentID={props.match.params.TournamentID}  EventName={props.match.params.EventName} /> } } />
+                    <Route path="/tournaments/:TournamentID/:EventName" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent TournamentID={props.match.params.TournamentID}  EventName={props.match.params.EventName} /> } } />
                     <Route path="/players" component={Profile} />
                 </div>
             </HashRouter>
