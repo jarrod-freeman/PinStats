@@ -42,7 +42,7 @@ const TournamentDetailsComponent: FunctionComponent<any> = (props: RouteParams) 
 
     return (
         <div>
-            <h2>{tournament.Name} - {props.EventName}</h2>
+            <h3>{tournament.Name} - {props.EventName}</h3>
 
             <div>
                 Winner: {getEventWinner()}

@@ -1,0 +1,21 @@
+.header {
+    padding: 40px 80px;
+    background-color: darkslateblue;
+}
+
+.header .logo { 
+    height: 64px;
+}
+
+.header .title {
+    padding-left: 35px;
+    display: inline;
+    font-weight: bold;
+    font-size: 36px;
+    vertical-align: top;
+}
+
+.header .title a {
+    color: white;
+    text-decoration: none;
+}

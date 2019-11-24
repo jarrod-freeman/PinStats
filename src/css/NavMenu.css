@@ -1,0 +1,34 @@
+.navBar {
+    background-color: gray;
+    height: 60px;
+    color: white;
+}
+
+.navBar ul {
+    margin: 0;
+}
+
+.menu {
+    padding-left: 60px;
+    height: 100%;
+}
+
+.menu div {
+    display: inline-block;
+    line-height: 60px;
+}
+
+.menu div:hover,
+.menu a.active {
+    background-color: #282c34;
+    cursor: pointer;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 0 40px;
+    font-weight: bold;
+    font-size: 20px;
+}

@@ -27,7 +27,7 @@ const ProfileComponent: FunctionComponent = () => {
 
     return (
         <div>
-            <h2>Player Search</h2>
+            <h3>Player Search</h3>
             <Autocomplete
                 id="playerSearch"
                 getOptionLabel={ (option: Player) => `${option.FirstName} ${option.LastName}` }
