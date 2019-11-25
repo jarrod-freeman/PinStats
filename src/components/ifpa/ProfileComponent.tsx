@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect, useCallback } from 'react';
+import React, { FunctionComponent, useState, useEffect, useCallback, ChangeEvent } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,7 @@ import debounce from 'lodash/debounce';
 const ProfileComponent: FunctionComponent = () => {
     const [playerSearchValue, setPlayerSearchValue] = useState('');
     const [playerSearchResults, setPlayerSearchResults] = useState<Player[]>([]);
+    const [playerProfile, setPlayerProfile] = useState<Player | null>(null);
 
     useEffect(() => {
         let isSubscribed = true;
@@ -36,6 +37,18 @@ const ProfileComponent: FunctionComponent = () => {
 
     const debouncePlayerSearchChange = useCallback(debounce(playerSearchChange, 500), []);
 
+    const playerSearchComplete = (player: Player) => {
+        //TODO:
+        //the player object returned by the search API is incomplete
+        //so we need to make another request to get the full player profile
+        if(player && player.ID > 0){
+            setPlayerProfile(player);
+        }
+        else{
+            setPlayerProfile(null);
+        }
+    };
+
     return (
         <div>
             <h3>Player Search</h3>
@@ -57,7 +70,11 @@ const ProfileComponent: FunctionComponent = () => {
                         </Grid>
                     );
                 }}
+                onChange={(e: ChangeEvent<object>, newValue: Player) => {
+                    playerSearchComplete(newValue);
+                }}
             />
+            {playerProfile ? playerProfile.FirstName : null}
         </div>
     );
 };
