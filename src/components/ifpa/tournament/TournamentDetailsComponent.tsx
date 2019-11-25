@@ -13,16 +13,24 @@ const TournamentDetailsComponent: FunctionComponent<any> = (props: RouteParams) 
     const [tournament, setTournament] = useState(new Tournament({}));
 
     useEffect(() => {
+        let isSubscribed = true;
+
         tournamentService.getTournament(props.TournamentID, props.EventName)
             .then(tournament => {
-                if(tournament instanceof Tournament){
-                    setTournament(tournament);
-                }
-                else{
-                    setTournament(new Tournament({}));
+                if(isSubscribed){
+                    if(tournament instanceof Tournament){
+                        setTournament(tournament);
+                    }
+                    else{
+                        setTournament(new Tournament({}));
+                    }
                 }
             });
-    }, []);
+
+        return () => {
+            isSubscribed = false;
+        };
+    }, [props.TournamentID, props.EventName]);
 
     const getEventWinner = () => {
         if(tournament.Events && tournament.Events.length > 0){

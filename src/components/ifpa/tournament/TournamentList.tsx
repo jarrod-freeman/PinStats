@@ -14,11 +14,19 @@ const TournamentList: FunctionComponent = () => {
     const [rowsPerPage, setRowsPerPage] = useState(pageSizes[0]);
 
     useEffect(() => {
+        let isSubscribed = true;
+
         tournamentService.getTournaments(page * rowsPerPage, rowsPerPage)
             .then(response => {
-                setTournamentList(response.Tournaments);
-                setTournamentCount(response.TotalCount);
+                if(isSubscribed){
+                    setTournamentList(response.Tournaments);
+                    setTournamentCount(response.TotalCount);
+                }
             });
+
+        return () => {
+            isSubscribed = false;
+        };
     }, [page, rowsPerPage]);
 
     const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {

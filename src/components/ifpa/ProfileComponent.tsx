@@ -11,23 +11,30 @@ const ProfileComponent: FunctionComponent = () => {
     const [playerSearchResults, setPlayerSearchResults] = useState<Player[]>([]);
 
     useEffect(() => {
+        let isSubscribed = true;
+
         if(playerSearchValue !== ''){
-            console.log(playerSearchValue);
             playerService.search(playerSearchValue)
                 .then(players => {
-                    setPlayerSearchResults(players);
+                    if(isSubscribed){
+                        setPlayerSearchResults(players);
+                    }
                 });
         }
         else{
             setPlayerSearchResults([]);
         }
+
+        return () => {
+            isSubscribed = false;
+        };
     }, [playerSearchValue]);
 
     const playerSearchChange = (value: string) => {
         setPlayerSearchValue(value);
     };
 
-    const debouncePlayerSearchChange = useCallback(debounce(playerSearchChange, 400), []);
+    const debouncePlayerSearchChange = useCallback(debounce(playerSearchChange, 500), []);
 
     return (
         <div>
