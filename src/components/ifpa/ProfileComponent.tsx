@@ -1,9 +1,10 @@
-import React, { FunctionComponent, ChangeEvent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useState, useEffect, useCallback } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
 import Player from '../../models/ifpa/Player';
 import playerService from '../../services/profiles';
+import debounce from 'lodash/debounce';
 
 const ProfileComponent: FunctionComponent = () => {
     const [playerSearchValue, setPlayerSearchValue] = useState('');
@@ -11,6 +12,7 @@ const ProfileComponent: FunctionComponent = () => {
 
     useEffect(() => {
         if(playerSearchValue !== ''){
+            console.log(playerSearchValue);
             playerService.search(playerSearchValue)
                 .then(players => {
                     setPlayerSearchResults(players);
@@ -21,9 +23,11 @@ const ProfileComponent: FunctionComponent = () => {
         }
     }, [playerSearchValue]);
 
-    const playerSearchChange = (e:ChangeEvent<HTMLInputElement>) => {
-        setPlayerSearchValue(e.target.value);
+    const playerSearchChange = (value: string) => {
+        setPlayerSearchValue(value);
     };
+
+    const debouncePlayerSearchChange = useCallback(debounce(playerSearchChange, 400), []);
 
     return (
         <div>
@@ -35,7 +39,7 @@ const ProfileComponent: FunctionComponent = () => {
                 options={playerSearchResults}
                 freeSolo
                 renderInput={params => (
-                    <TextField {...params} id="playerSearchField" label="Search" variant="outlined" fullWidth onChange={playerSearchChange} />
+                    <TextField {...params} id="playerSearchField" label="Search" variant="outlined" fullWidth onChange={e => debouncePlayerSearchChange(e.target.value)} />
                 )}
                 renderOption={(option: Player) => {
                     return(
