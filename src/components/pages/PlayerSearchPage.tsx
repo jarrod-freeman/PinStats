@@ -3,8 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
 import Player from '../../models/ifpa/Player';
-import playerService from '../../services/profiles';
+import playerService from '../../services/players';
 import debounce from 'lodash/debounce';
+import PlayerProfile from '../ifpa/PlayerProfile';
 
 const PlayerSearchPage: FunctionComponent = () => {
     const [playerSearchValue, setPlayerSearchValue] = useState('');
@@ -49,6 +50,14 @@ const PlayerSearchPage: FunctionComponent = () => {
         }
     };
 
+    const displayPlayerProfile = () => {
+        if(!playerProfile){
+            return null;
+        }
+
+        return (<PlayerProfile Player={playerProfile} />);
+    };
+
     return (
         <div>
             <h3>Player Search</h3>
@@ -74,7 +83,8 @@ const PlayerSearchPage: FunctionComponent = () => {
                     playerSearchComplete(newValue);
                 }}
             />
-            {playerProfile ? playerProfile.FirstName : null}
+
+            {displayPlayerProfile()}
         </div>
     );
 };
