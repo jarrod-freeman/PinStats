@@ -59,11 +59,16 @@ const PlayerSearchPage: FunctionComponent = () => {
     };
 
     return (
-        <div>
+        <section>
             <h3>Player Search</h3>
             <Autocomplete
                 id="playerSearch"
-                getOptionLabel={ (option: Player) => `${option.FirstName} ${option.LastName}` }
+                getOptionLabel={ (option: Player | string) => {
+                    if(option instanceof Player){
+                        return `${option.FirstName} ${option.LastName}`;
+                    }
+                    return option;
+                }}
                 filterOptions={ x => x }
                 options={playerSearchResults}
                 freeSolo
@@ -85,7 +90,7 @@ const PlayerSearchPage: FunctionComponent = () => {
             />
 
             {displayPlayerProfile()}
-        </div>
+        </section>
     );
 };
 
