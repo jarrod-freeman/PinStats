@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import  '../../css/TournamentList.css';
 import { Table, TableBody, TableCell, TableHead, TableRow, TableFooter, TablePagination } from '@material-ui/core';
 import TablePaginationActions from '../common/TablePaginationActions';
-import tournamentService from '../../services/tournaments';
+import tournamentService from '../../services/ifpa/tournaments';
 
 const TournamentPage: FunctionComponent = () => {
     const pageSizes = [10, 20, 50, 100];

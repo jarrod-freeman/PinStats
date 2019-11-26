@@ -1,8 +1,8 @@
 import axios from 'axios';
-import Tournament from '../models/ifpa/Tournament';
-import TournamentList from '../models/ifpa/TournamentList';
-import Event from '../models/ifpa/Event';
-import Location from '../models/ifpa/Location';
+import Tournament from '../../models/ifpa/Tournament';
+import TournamentList from '../../models/ifpa/TournamentList';
+import Event from '../../models/ifpa/Event';
+import Location from '../../models/ifpa/Location';
 
 const baseUrl = 'https://api.ifpapinball.com/v1/tournament';
 

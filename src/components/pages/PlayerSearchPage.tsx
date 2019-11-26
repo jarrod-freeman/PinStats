@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
 import Player from '../../models/ifpa/Player';
-import playerService from '../../services/players';
+import playerService from '../../services/ifpa/players';
 import debounce from 'lodash/debounce';
 import PlayerProfile from '../ifpa/PlayerProfile';
 

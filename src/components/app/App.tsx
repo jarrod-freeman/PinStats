@@ -8,6 +8,7 @@ import PlayerSearchPage from '../pages/PlayerSearchPage';
 import TournamentPage from '../pages/TournamentPage';
 import TournamentDetailsComponent, { TournamentDetailsProps } from '../ifpa/TournamentDetailsComponent';
 import HomePage from '../pages/HomePage';
+import FindTournamentPage from '../pages/FindTournamentPage';
 import NotFound from '../common/NotFound';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -30,6 +31,7 @@ const App = () => {
                                 <Route exact path="/tournaments" component={TournamentPage} />
                                 <Route path="/tournaments/:TournamentID/:EventName" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent TournamentID={props.match.params.TournamentID}  EventName={props.match.params.EventName} />; } } />
                                 <Route path="/players" component={PlayerSearchPage} />
+                                <Route path="/find-tournament" component={FindTournamentPage} />
                                 <Route component={NotFound} />
                             </Switch>
                         </Container>

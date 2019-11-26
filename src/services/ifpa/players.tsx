@@ -1,7 +1,7 @@
 import axios from 'axios';
-import Player from '../models/ifpa/Player';
-import Location from '../models/ifpa/Location';
-import PlayerStats from '../models/ifpa/PlayerStats';
+import Player from '../../models/ifpa/Player';
+import Location from '../../models/ifpa/Location';
+import PlayerStats from '../../models/ifpa/PlayerStats';
 
 const baseUrl = 'https://api.ifpapinball.com/v1/player';
 
