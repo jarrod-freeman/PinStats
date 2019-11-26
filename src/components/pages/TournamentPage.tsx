@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useEffect, useState, MouseEvent, ChangeEvent } from 'react';
-import Tournament from '../../../models/ifpa/Tournament';
+import Tournament from '../../models/ifpa/Tournament';
 import { Link } from 'react-router-dom';
-import  '../../../css/TournamentList.css';
+import  '../../css/TournamentList.css';
 import { Table, TableBody, TableCell, TableHead, TableRow, TableFooter, TablePagination } from '@material-ui/core';
-import TablePaginationActions from '../../common/TablePaginationActions';
-import tournamentService from '../../../services/tournaments';
+import TablePaginationActions from '../common/TablePaginationActions';
+import tournamentService from '../../services/tournaments';
 
-const TournamentList: FunctionComponent = () => {
+const TournamentPage: FunctionComponent = () => {
     const pageSizes = [10, 20, 50, 100];
     const [tournamentList, setTournamentList] = useState(new Array<Tournament>());
     const [tournamentCount, setTournamentCount] = useState(0);
@@ -83,4 +83,4 @@ const TournamentList: FunctionComponent = () => {
     );
 };
 
-export default TournamentList;
+export default TournamentPage;

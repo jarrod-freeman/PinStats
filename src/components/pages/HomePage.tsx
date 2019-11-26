@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class HomeComponent extends Component {
+class HomePage extends Component {
     public render(){
         return (
             <h3>Welcome to Pin Stats</h3>
@@ -8,4 +8,4 @@ class HomeComponent extends Component {
     }
 }
 
-export default HomeComponent;
+export default HomePage;

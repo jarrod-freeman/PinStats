@@ -1,8 +1,8 @@
 import React, { FunctionComponent, Props, useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import Tournament from '../../../models/ifpa/Tournament';
-import  '../../../css/TournamentList.css';
-import tournamentService from '../../../services/tournaments';
+import Tournament from '../../models/ifpa/Tournament';
+import  '../../css/TournamentList.css';
+import tournamentService from '../../services/tournaments';
 
 interface RouteParams {
     TournamentID: string,

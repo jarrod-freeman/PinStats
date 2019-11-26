@@ -6,7 +6,7 @@ import Player from '../../models/ifpa/Player';
 import playerService from '../../services/profiles';
 import debounce from 'lodash/debounce';
 
-const ProfileComponent: FunctionComponent = () => {
+const PlayerSearchPage: FunctionComponent = () => {
     const [playerSearchValue, setPlayerSearchValue] = useState('');
     const [playerSearchResults, setPlayerSearchResults] = useState<Player[]>([]);
     const [playerProfile, setPlayerProfile] = useState<Player | null>(null);
@@ -79,4 +79,4 @@ const ProfileComponent: FunctionComponent = () => {
     );
 };
 
-export default ProfileComponent;
+export default PlayerSearchPage;
