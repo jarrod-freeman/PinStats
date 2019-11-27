@@ -16,7 +16,7 @@ export default class Player extends PlayerMetadata {
     Inititials: string;
     Age: number;
     ExcludedFlag: boolean;
-    IFPARegistered: boolean;
+    IfpaRegistered: boolean;
     Stats: PlayerStats;
 
     constructor(args?: Partial<Player>){

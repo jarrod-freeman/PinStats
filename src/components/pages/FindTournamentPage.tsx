@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import calendarService from '../../services/ifpa/calendar';
+import CalendarEvent from '../../models/ifpa/CalendarEvent';
 
 const FindTournamentPage: FunctionComponent = () => {
-    const [calendarEvents, setCalendarEvents] = useState<Array<any>>(new Array<any>());
+    const [calendarEvents, setCalendarEvents] = useState<Array<CalendarEvent>>(new Array<CalendarEvent>());
     const [searchAddress, setSearchAddress] = useState('');
     const [searchRadius, setSearchRadius] = useState(20);
 
@@ -18,7 +19,7 @@ const FindTournamentPage: FunctionComponent = () => {
         if(searchAddress.length > 0){
             calendarService.search(searchAddress, searchRadius)
                 .then(results => {
-                    if(isSubscribed){
+                    if(isSubscribed && Array.isArray(results)){
                         setCalendarEvents(results);
                     }
                 });
@@ -33,9 +34,9 @@ const FindTournamentPage: FunctionComponent = () => {
         <section>
             <h3>Find a Tournament</h3>
             {
-                calendarEvents.map((event: any, i: number) => {
+                calendarEvents.map((event: CalendarEvent, i: number) => {
                     return(
-                        <div key={i}>{event.tournament_name}</div>
+                        <div key={i}>{event.TournamentName}</div>
                     );
                 })
             }
