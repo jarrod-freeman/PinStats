@@ -9,6 +9,7 @@ const NavMenu = () => {
                 <div><NavLink activeClassName="active" exact to="/">Home</NavLink></div>
                 <div><NavLink activeClassName="active" to="/tournaments">Tournaments</NavLink></div>
                 <div><NavLink activeClassName="active" to="/players">Player Search</NavLink></div>
+                <div><NavLink activeClassName="active" to="/versus">Head to Head</NavLink></div>
                 <div><NavLink activeClassName="active" to="/find-tournament">Find Tournament</NavLink></div>
             </div>
         </div>

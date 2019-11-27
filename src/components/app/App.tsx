@@ -12,6 +12,7 @@ import FindTournamentPage from '../pages/FindTournamentPage';
 import NotFound from '../common/NotFound';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import VersusPage from '../pages/VersusPage';
 
 const App = () => {
     return (
@@ -31,6 +32,7 @@ const App = () => {
                                 <Route exact path="/tournaments" component={TournamentPage} />
                                 <Route path="/tournaments/:TournamentID/:EventName" render={ (props: TournamentDetailsProps) => { return <TournamentDetailsComponent TournamentID={props.match.params.TournamentID}  EventName={props.match.params.EventName} />; } } />
                                 <Route path="/players" component={PlayerSearchPage} />
+                                <Route path="/versus" component={VersusPage} />
                                 <Route path="/find-tournament" component={FindTournamentPage} />
                                 <Route component={NotFound} />
                             </Switch>
