@@ -44,7 +44,7 @@ const getHistory = async (playerID: number) => {
         history = new PlayerHistory();
 
         if(player){
-            history.ID = player.player_id;
+            history.ID = parseInt(player.player_id, 10);
             history.FirstName = player.first_name;
             history.LastName = player.last_name;
         }
@@ -52,9 +52,9 @@ const getHistory = async (playerID: number) => {
         if(rankHistory && Array.isArray(rankHistory)){
             history.RankHistory = rankHistory.map((rank: any) => {
                 return new Rank({
-                    Date: rank.rank_date,
-                    Rank: rank.rank_position,
-                    Points: rank.wppr_points
+                    Date: new Date(rank.rank_date),
+                    Rank: parseInt(rank.rank_position, 10),
+                    Points: parseFloat(rank.wppr_points)
                 });
             });
         }
@@ -62,8 +62,8 @@ const getHistory = async (playerID: number) => {
         if(ratingHistory && Array.isArray(ratingHistory)){
             history.RatingHistory = ratingHistory.map((rating: any) => {
                 return new Rating({
-                    Date: rating.rating_date,
-                    Rating: rating.rating
+                    Date: new Date(rating.rating_date),
+                    Rating: parseFloat(rating.rating)
                 });
             });
         }
