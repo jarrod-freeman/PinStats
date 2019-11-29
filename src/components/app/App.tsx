@@ -9,7 +9,7 @@ import TournamentPage from '../pages/TournamentPage';
 import TournamentDetailsComponent, { TournamentDetailsProps } from '../ifpa/TournamentDetailsComponent';
 import HomePage from '../pages/HomePage';
 import FindTournamentPage from '../pages/FindTournamentPage';
-import NotFound from '../common/NotFound';
+import NotFound from '../pages/NotFoundPage';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import VersusPage from '../pages/VersusPage';
