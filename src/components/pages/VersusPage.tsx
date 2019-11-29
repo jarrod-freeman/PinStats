@@ -141,7 +141,7 @@ const VersusPage: FunctionComponent = () => {
         <section>
             <h3>Head to Head</h3>
             <Grid container>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={5}>
                     <Grid container>
                         <Grid item xs={12} sm={2}>Player 1:</Grid>
                         <Grid item xs={12} sm={10}>
@@ -150,7 +150,12 @@ const VersusPage: FunctionComponent = () => {
                     </Grid>
                     {displayPlayerProfile(player1)}
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={1}>
+                    <Grid container direction="row" alignItems="center" style={{ height: '100%', textAlign: 'center' }}>
+                        <Grid item xs={12}>Vs:</Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} sm={5}>
                     <Grid container>
                         <Grid item xs={12} sm={2}>Player 2:</Grid>
                         <Grid item xs={12} sm={10}>
