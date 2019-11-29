@@ -19,13 +19,13 @@ const App = () => {
         <div className="App">
             <HashRouter>
                 <Grid container spacing={0} justify="center">
-                    <Grid item xs={12} md={9}>
+                    <Grid item xs={12} md={9} style={{ minHeight: '15vh' }}>
                         <Header />
                     </Grid>
-                    <Grid item xs={12} md={9}>
+                    <Grid item xs={12} md={9} style={{ minHeight: '6vh' }}>
                         <NavMenu />
                     </Grid>
-                    <Grid className="content" item xs={12} md={9}>
+                    <Grid className="content" item xs={12} md={9} style={{ minHeight: '79vh' }}>
                         <Container >
                             <Switch>
                                 <Route exact path="/" component={HomePage} />
