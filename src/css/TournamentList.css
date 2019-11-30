@@ -3,6 +3,8 @@
     display: table;
     border-collapse: collapse;
     width: 100%;
+    background-color: whitesmoke;
+    color: black;
 }
 
 .tournaments thead {
@@ -10,7 +12,7 @@
     background-color: cornflowerblue
 }
 
-.tournaments {
-    background-color: whitesmoke;
-    color: black;
+.tournaments tbody tr:hover {
+    cursor: pointer;
+    background-color: grey;
 }

@@ -41,7 +41,7 @@ const getTournaments = async (startPos: number, count: number) => {
     return results;
 };
 
-const getTournament = async (tournamentID: string, eventName: string) => {
+const getTournament = async (tournamentID: number, eventName: string) => {
     let tournament: Tournament | null = null;
     const response = await axios.get(`${baseUrl}/${tournamentID}?api_key=${process.env.REACT_APP_API_KEY}`);
 
