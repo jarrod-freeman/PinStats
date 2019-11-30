@@ -1,2 +1,2 @@
-# ReactDemo
-Demo app for learnig react using IFPA API
+# PinStats
+Website for viewing pinball tournament and player stats using the IFPA API.
