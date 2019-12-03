@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TournamentPage from '../../components/pages/TournamentPage';
+import TournamentPage from '../../../components/pages/TournamentPage';
 
 jest.mock('react-router-dom', () => ({
     useHistory: () => ({
