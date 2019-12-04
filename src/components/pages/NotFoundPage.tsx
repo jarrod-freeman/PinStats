@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-const NotFound: FunctionComponent = () => {
+const NotFoundPage: FunctionComponent = () => {
     return(
         <div>
             404 Page Not Found
@@ -8,4 +8,4 @@ const NotFound: FunctionComponent = () => {
     );
 };
 
-export default NotFound;
+export default NotFoundPage;

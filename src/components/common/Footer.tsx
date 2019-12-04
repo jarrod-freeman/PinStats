@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import '../../css/Footer.css';
 
-const Footer = () => {
+const Footer: FunctionComponent = () => {
     return(
         <div className="footer">
             © {new Date().getFullYear()}

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../css/NavMenu.css';
 import AppBar from '@material-ui/core/AppBar';
 
-const NavMenu = () => {
+const NavMenu: FunctionComponent = () => {
     return(
         <AppBar className="navBar" position="relative">
             <div className="menu">

@@ -5,3 +5,6 @@ jest.mock('react-router-dom', () => ({
         listen: jest.fn().mockImplementation(() => jest.fn())
     }),
 }));
+
+class SVGPathElement extends HTMLElement {}
+window.SVGPathElement = SVGPathElement
