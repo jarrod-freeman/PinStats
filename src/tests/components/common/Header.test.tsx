@@ -4,9 +4,40 @@ import { render } from '@testing-library/react';
 import Header from '../../../components/common/Header';
 
 describe('Header Component', () => {
-    test('renders without crashing', () => {
-        const component = render(<HashRouter><Header /></HashRouter>);
+    it('renders as expected', () => {
+        const { container } = render(
+            <HashRouter>
+                <Header />
+            </HashRouter>
+        );
 
-        expect(component.container).toBeDefined();
+        expect(container).toMatchInlineSnapshot(`
+            <div>
+              <div
+                class="headerWrapper"
+              >
+                <div
+                  class="header"
+                >
+                  <img
+                    alt="logo"
+                    class="logo"
+                    src="logo.png"
+                  />
+                  <div
+                    class="title"
+                  >
+                    <a
+                      aria-current="page"
+                      class="active"
+                      href="#/"
+                    >
+                      Pin Stats
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `);
     });
 });
