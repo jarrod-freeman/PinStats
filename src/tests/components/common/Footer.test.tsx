@@ -4,8 +4,8 @@ import Footer from '../../../components/common/Footer';
 
 describe('Footer Component', () => {
     test('renders without crashing', () => {
-        const component = render(<Footer />);
+        const { container } = render(<Footer />);
 
-        expect(component.container).toBeDefined();
+        expect(container).toMatchInlineSnapshot();
     });
 });
