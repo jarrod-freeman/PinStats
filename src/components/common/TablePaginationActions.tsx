@@ -5,13 +5,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-
-interface TablePaginationActionsProps {
-    count: number;
-    page: number;
-    rowsPerPage: number;
-    onChangePage: (event: MouseEvent<HTMLButtonElement>, newPage: number) => void;
-}
+import { TablePaginationActionsProps }  from '@material-ui/core/TablePagination/TablePaginationActions';
 
 const useStyles1 = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,24 +16,23 @@ const useStyles1 = makeStyles((theme: Theme) =>
     }),
 );
 
-const TablePaginationActions: FunctionComponent<any> = (props: TablePaginationActionsProps) => {
+const TablePaginationActions: FunctionComponent<TablePaginationActionsProps> = ({ count, page, rowsPerPage, onChangePage }: TablePaginationActionsProps) => {
     const classes = useStyles1();
     const theme = useTheme();
-    const { count, page, rowsPerPage, onChangePage } = props;
 
-    const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleFirstPageButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, 0);
     };
 
-    const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleBackButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, page - 1);
     };
 
-    const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleNextButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, page + 1);
     };
 
-    const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleLastPageButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
         onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
     };
 

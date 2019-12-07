@@ -4,8 +4,11 @@ export default class TournamentList {
     Tournaments: Array<Tournament>;
     TotalCount: number;
 
-    constructor(){
+    constructor(args?: Partial<TournamentList>){
         this.Tournaments = new Array<Tournament>();
-        this.TotalCount = 0;
+
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }
