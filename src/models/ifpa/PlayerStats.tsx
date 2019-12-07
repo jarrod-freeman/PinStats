@@ -1,9 +1,10 @@
 export default class PlayerStats{
+    private highestRankDate: Date;
+
     CurrentRank: number;
     LastMonthRank: number;
     LastYearRank: number;
     HighestRank: number;
-    HighestRankDate: Date;
     BestFinish: number;
     AverageFinish: number;
     TotalEventsAllTime: number;
@@ -11,7 +12,16 @@ export default class PlayerStats{
     TotalEventsAway: number;
     RatingsRank: number;
 
-    constructor(args: Partial<PlayerStats>){
-        Object.assign(this, args);
+    get HighestRankDate(): Date {
+        return this.highestRankDate;
+    }
+    set HighestRankDate(value: Date) {
+        this.highestRankDate = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+
+    constructor(args?: Partial<PlayerStats>){
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }

@@ -7,7 +7,9 @@ export class PlayerMetadata {
     LastName: string;
 
     constructor(args?: Partial<PlayerMetadata>){
-        Object.assign(this, args);
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }
 
@@ -22,6 +24,8 @@ export default class Player extends PlayerMetadata {
     constructor(args?: Partial<Player>){
         super(args);
 
-        Object.assign(this, args);
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }

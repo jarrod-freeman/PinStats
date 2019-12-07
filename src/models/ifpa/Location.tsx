@@ -4,7 +4,9 @@ export default class Location{
     CountryCode: string;
     CountryName: string;
 
-    constructor(args: Partial<Location>){
-        Object.assign(this, args);
+    constructor(args?: Partial<Location>){
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }

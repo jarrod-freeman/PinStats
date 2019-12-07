@@ -1,4 +1,7 @@
 export default class CalendarEvent{
+    private startDate: Date;
+    private endDate: Date;
+
     ID: number;
     TournamentID: number;
     TournamentName: string;
@@ -17,10 +20,24 @@ export default class CalendarEvent{
     Details: string;
     PrivateFlag: boolean;
     Distance: number;
-    StartDate: Date;
-    EndDate: Date;
 
-    constructor(args: Partial<CalendarEvent>){
-        Object.assign(this, args);
+    get StartDate(): Date {
+        return this.startDate;
+    }
+    set StartDate(value: Date) {
+        this.startDate = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+
+    get EndDate(): Date {
+        return this.endDate;
+    }
+    set EndDate(value: Date) {
+        this.endDate = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+
+    constructor(args?: Partial<CalendarEvent>){
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }

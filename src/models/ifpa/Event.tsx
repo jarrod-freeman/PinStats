@@ -1,11 +1,21 @@
 export default class Event{
+    private date: Date;
+
     ID: number;
-    Date: Date;
     Name: string;
     WinnerID: number;
     WinnerName: string;
 
-    constructor(args: Partial<Event>){
-        Object.assign(this, args);
+    get Date(): Date{
+        return this.date;
+    }
+    set Date(value: Date) {
+        this.date = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+
+    constructor(args?: Partial<Event>){
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }

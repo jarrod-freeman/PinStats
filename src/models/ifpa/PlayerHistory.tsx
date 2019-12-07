@@ -1,21 +1,41 @@
 import { PlayerMetadata } from './Player';
 
 export class Rank {
-    Date: Date;
+    private date: Date;
+
     Rank: number;
     Points: number;
 
+    get Date(): Date{
+        return this.date;
+    }
+    set Date(value: Date) {
+        this.date = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+
     constructor(args?: Partial<Rank>){
-        Object.assign(this, args);
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }
 
 export class Rating {
-    Date: Date;
+    private date: Date;
+
     Rating: number;
 
+    get Date(): Date{
+        return this.date;
+    }
+    set Date(value: Date) {
+        this.date = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+
     constructor(args?: Partial<Rating>){
-        Object.assign(this, args);
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }
 
@@ -26,6 +46,11 @@ export default class PlayerHistory extends PlayerMetadata {
     constructor(args?: Partial<PlayerHistory>){
         super(args);
 
-        Object.assign(this, args);
+        this.RankHistory = new Array<Rank>();
+        this.RatingHistory = new Array<Rating>();
+
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }

@@ -10,9 +10,11 @@ export default class Tournament{
     PlayerCount: number;
     ContactName: string;
 
-    constructor(args: Partial<Tournament>){
+    constructor(args?: Partial<Tournament>){
         this.Events = new Array<Event>();
 
-        Object.assign(this, args);
+        if(args !== undefined){
+            Object.assign(this, args);
+        }
     }
 }
