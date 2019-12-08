@@ -11,13 +11,13 @@ const PlayerSearchPage: FunctionComponent = () => {
             return null;
         }
 
-        return (<PlayerProfile Player={playerProfile} />);
+        return (<PlayerProfile player={playerProfile} />);
     };
 
     return (
         <section>
             <h3>Player Search</h3>
-            <FindPlayer SetPlayerProfile={setPlayerProfile} />
+            <FindPlayer setPlayerProfile={setPlayerProfile} />
 
             {displayPlayerProfile()}
         </section>

@@ -3,28 +3,40 @@ import Player from '../../models/ifpa/Player';
 import Grid from '@material-ui/core/Grid';
 
 interface PlayerProfileParams {
-    Player: Player
+    player: Player
 }
 
-const PlayerProfile: FunctionComponent<PlayerProfileParams> = ({ Player }: PlayerProfileParams) => {
+const PlayerProfile: FunctionComponent<PlayerProfileParams> = ({ player }: PlayerProfileParams) => {
     return (
         <section>
             <h3>Player Info</h3>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={4}>
-                    <img style={{ width: '100%' }} src={`https://www.ifpapinball.com/images/profiles/players/${Player.ID}.jpg`} alt=" " />
+                    <img id='playerImage' style={{ width: '100%' }} src={`https://www.ifpapinball.com/images/profiles/players/${player.ID}.jpg`} alt=" " />
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={2}>Name:</Grid>
+                        <Grid item xs={12} sm={2}>
+                            <label htmlFor='playerName'>Name:</label>
+                        </Grid>
                         <Grid item sm={1}></Grid>
-                        <Grid item xs={12} sm={9}>{Player.FirstName + ' ' + Player.LastName}</Grid>
-                        <Grid item xs={12} sm={2}>WPPR Rank:</Grid>
+                        <Grid item xs={12} sm={9}>
+                            <div id='playerName'>{player.FirstName + ' ' + player.LastName}</div>
+                        </Grid>
+                        <Grid item xs={12} sm={2}>
+                            <label htmlFor='playerRank'>WPPR Rank:</label>
+                        </Grid>
                         <Grid item sm={1}></Grid>
-                        <Grid item xs={12} sm={9}>{Player.Stats ? Player.Stats.CurrentRank : null}</Grid>
-                        <Grid item xs={12} sm={2}>Player #:</Grid>
+                        <Grid item xs={12} sm={9}>
+                            <div id='playerRank'>{player.Stats ? player.Stats.CurrentRank : null}</div>
+                        </Grid>
+                        <Grid item xs={12} sm={2}>
+                            <label htmlFor='playerID'>Player #:</label>
+                        </Grid>
                         <Grid item sm={1}></Grid>
-                        <Grid item xs={12} sm={9}>{Player.ID}</Grid>
+                        <Grid item xs={12} sm={9}>
+                            <div id='playerID'>{player.ID}</div>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

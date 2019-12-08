@@ -7,10 +7,10 @@ import playerService from '../../services/ifpa/players';
 import debounce from 'lodash/debounce';
 
 interface FindPlayerProps {
-    SetPlayerProfile: Function
+    setPlayerProfile: Function
 }
 
-const FindPlayer: FunctionComponent<FindPlayerProps> = ({ SetPlayerProfile }: FindPlayerProps) => {
+const FindPlayer: FunctionComponent<FindPlayerProps> = ({ setPlayerProfile }: FindPlayerProps) => {
     const [playerSearchValue, setPlayerSearchValue] = useState('');
     const [playerSearchResults, setPlayerSearchResults] = useState<Player[]>([]);
 
@@ -45,10 +45,10 @@ const FindPlayer: FunctionComponent<FindPlayerProps> = ({ SetPlayerProfile }: Fi
         //the player object returned by the search API is incomplete
         //so we need to make another request to get the full player profile
         if(player && player.ID > 0){
-            SetPlayerProfile(player);
+            setPlayerProfile(player);
         }
         else{
-            SetPlayerProfile(null);
+            setPlayerProfile(null);
         }
     };
 

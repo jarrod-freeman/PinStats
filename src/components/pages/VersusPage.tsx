@@ -30,12 +30,10 @@ const VersusPage: FunctionComponent = () => {
             setPlayer1History(null);
         }
 
-        setChartVisible((player1History instanceof PlayerHistory || player2History instanceof PlayerHistory));
-
         return () => {
             isSubscribed = false;
         };
-    }, [player1, player1History, player2History]);
+    }, [player1]);
 
     useEffect(() => {
         let isSubscribed = true;
@@ -52,16 +50,18 @@ const VersusPage: FunctionComponent = () => {
             setPlayer2History(null);
         }
 
-        setChartVisible((player1History instanceof PlayerHistory || player2History instanceof PlayerHistory));
-
         return () => {
             isSubscribed = false;
         };
-    }, [player2, player1History, player2History]);
+    }, [player2]);
+
+    useEffect(() => {
+        setChartVisible((player1History instanceof PlayerHistory || player2History instanceof PlayerHistory));
+    }, [player1History, player2History]);
 
     const displayPlayerProfile = (player: Player | null) => {
         if(player instanceof Player){
-            return (<PlayerProfile Player={player} />);
+            return (<PlayerProfile player={player} />);
         }
 
         return null;
@@ -75,7 +75,7 @@ const VersusPage: FunctionComponent = () => {
                     <Grid container>
                         <Grid item xs={12} sm={2}>Player 1:</Grid>
                         <Grid item xs={12} sm={10}>
-                            <FindPlayer SetPlayerProfile={setPlayer1} />
+                            <FindPlayer setPlayerProfile={setPlayer1} />
                         </Grid>
                     </Grid>
                     {displayPlayerProfile(player1)}
@@ -89,7 +89,7 @@ const VersusPage: FunctionComponent = () => {
                     <Grid container>
                         <Grid item xs={12} sm={2}>Player 2:</Grid>
                         <Grid item xs={12} sm={10}>
-                            <FindPlayer SetPlayerProfile={setPlayer2} />
+                            <FindPlayer setPlayerProfile={setPlayer2} />
                         </Grid>
                     </Grid>
                     {displayPlayerProfile(player2)}
