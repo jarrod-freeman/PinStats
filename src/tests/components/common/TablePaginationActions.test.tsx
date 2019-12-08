@@ -5,9 +5,9 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 
 describe('TablePaginationActions Component', () => {
     it('renders without crashing when default value props are provided', () => {
-        const component = render(<TablePaginationActions count={0} page={0} rowsPerPage={0} onChangePage={() => {}} />);
+        const { container } = render(<TablePaginationActions count={0} page={0} rowsPerPage={0} onChangePage={() => {}} />);
 
-        expect(component.container).toBeDefined();
+        expect(container).toBeDefined();
     });
 
     it('changes pages correctly when the next page button is clicked', async () => {
