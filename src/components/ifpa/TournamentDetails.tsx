@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import Tournament from '../../models/ifpa/Tournament';
+import Grid from '@material-ui/core/Grid';
 import  '../../css/TournamentList.css';
 
 interface TournamentDetailsParams {
@@ -25,7 +26,7 @@ const TournamentDetails: FunctionComponent<TournamentDetailsParams> = ({ tournam
     };
 
     const getEventDate = () => {
-        if(tournament.Events && tournament.Events.length > 0){
+        if(tournament.Events && tournament.Events.length > 0 && tournament.Events[0].Date){
             return tournament.Events[0].Date.toLocaleDateString();
         }
 
@@ -36,12 +37,20 @@ const TournamentDetails: FunctionComponent<TournamentDetailsParams> = ({ tournam
         <section>
             <h3>{getSectionHeader()}</h3>
 
-            <div>
-                Winner: {getEventWinner()}
-            </div>
-            <div>
-                Date: {getEventDate()}
-            </div>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={2}>
+                    <label htmlFor='tournamentWinner'>Winner:</label>
+                </Grid>
+                <Grid item xs={12} sm={10}>
+                    <div id='tournamentWinner'>{getEventWinner()}</div>
+                </Grid>
+                <Grid item xs={12} sm={2}>
+                    <label htmlFor='tournamentDate'>Date:</label>
+                </Grid>
+                <Grid item xs={12} sm={10}>
+                    <div id='tournamentDate'>{getEventDate()}</div>
+                </Grid>
+            </Grid>
         </section>
     );
 };

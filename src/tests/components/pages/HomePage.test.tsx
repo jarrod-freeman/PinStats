@@ -1,11 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '@testing-library/react';
 import HomePage from '../../../components/pages/HomePage';
 
 describe('HomePage Component', () => {
-    test('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<HomePage />, div);
-        ReactDOM.unmountComponentAtNode(div);
+    it('renders without crashing', async () => {
+        const { container } = render(<HomePage />);
+
+        expect(container).toBeDefined();
+    });
+
+    it('renders as expected', () => {
+        const { container } = render(<HomePage />);
+
+        expect(container).toMatchInlineSnapshot(`
+            <div>
+              <h3>
+                Welcome to Pin Stats
+              </h3>
+            </div>
+        `);
     });
 });
