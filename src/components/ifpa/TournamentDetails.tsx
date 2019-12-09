@@ -3,30 +3,38 @@ import Tournament from '../../models/ifpa/Tournament';
 import  '../../css/TournamentList.css';
 
 interface TournamentDetailsParams {
-    Tournament: Tournament
+    tournament: Tournament
 }
 
-const TournamentDetails: FunctionComponent<TournamentDetailsParams> = ({ Tournament }: TournamentDetailsParams) => {
+const TournamentDetails: FunctionComponent<TournamentDetailsParams> = ({ tournament }: TournamentDetailsParams) => {
+
+    const getSectionHeader = () => {
+        if(tournament.Events && tournament.Events.length > 0){
+            return `${tournament.Name} - ${tournament.Events[0].Name}`;
+        }
+
+        return tournament.Name;
+    };
 
     const getEventWinner = () => {
-        if(Tournament.Events && Tournament.Events.length > 0){
-            return Tournament.Events[0].WinnerName;
+        if(tournament.Events && tournament.Events.length > 0){
+            return tournament.Events[0].WinnerName;
         }
 
         return null;
     };
 
     const getEventDate = () => {
-        if(Tournament.Events && Tournament.Events.length > 0){
-            return Tournament.Events[0].Date.toLocaleDateString();
+        if(tournament.Events && tournament.Events.length > 0){
+            return tournament.Events[0].Date.toLocaleDateString();
         }
 
         return null;
     };
 
     return (
-        <div>
-            <h3>{Tournament.Name} - {Tournament.Events[0].Name}</h3>
+        <section>
+            <h3>{getSectionHeader()}</h3>
 
             <div>
                 Winner: {getEventWinner()}
@@ -34,7 +42,7 @@ const TournamentDetails: FunctionComponent<TournamentDetailsParams> = ({ Tournam
             <div>
                 Date: {getEventDate()}
             </div>
-        </div>
+        </section>
     );
 };
 

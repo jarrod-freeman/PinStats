@@ -107,7 +107,7 @@ const TournamentPage: FunctionComponent = () => {
     const displayTournament = () => {
         if(tournament instanceof Tournament){
             return (
-                <TournamentDetails Tournament={tournament} />
+                <TournamentDetails tournament={tournament} />
             );
         }
 
