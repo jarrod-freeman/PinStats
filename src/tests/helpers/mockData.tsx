@@ -1,4 +1,4 @@
-const calendarEvents: any = [{
+const calendarEventsData: any = [{
     'calendar_id': '6981',
     'tournament_id': '6616',
     'tournament_name': 'Stockholm Pinball',
@@ -68,6 +68,38 @@ const calendarEvents: any = [{
     'average_points': '0'
 }];
 
+const playersData: any = [{
+    'player_id': '1',
+    'first_name': 'TestFirst1',
+    'last_name': 'TestLast1',
+    'country_code': 'AU',
+    'country_name': 'Australia',
+    'city': '',
+    'state': '',
+    'wppr_rank': '2'
+},
+{
+    'player_id': '3',
+    'first_name': 'TestFirst2',
+    'last_name': 'TestLast2',
+    'country_code': 'US',
+    'country_name': 'United States',
+    'city': 'Columbus',
+    'state': 'OH',
+    'wppr_rank': '4'
+},
+{
+    'player_id': '4',
+    'first_name': 'TestFirst3',
+    'last_name': 'TestLast3',
+    'country_code': 'US',
+    'country_name': 'United Stats',
+    'city': 'New York',
+    'state': 'NY',
+    'wppr_rank': '5'
+}];
+
 export {
-    calendarEvents
+    calendarEventsData,
+    playersData
 };

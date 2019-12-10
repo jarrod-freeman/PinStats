@@ -13,7 +13,7 @@ const search = async (searchTerm: string) => {
     if(response && response.data && Array.isArray(response.data.search) && response.data.search.length < 100){
         results = response.data.search.map((result: any) => {
             return new Player({
-                ID: result.player_id,
+                ID: parseInt(result.player_id, 10),
                 FirstName: result.first_name,
                 LastName: result.last_name,
                 Location: new Location({
@@ -23,7 +23,7 @@ const search = async (searchTerm: string) => {
                     CountryName: result.country_name
                 }),
                 Stats: new PlayerStats({
-                    CurrentRank: result.wppr_rank
+                    CurrentRank: parseInt(result.wppr_rank, 10)
                 })
             });
         });
@@ -36,18 +36,16 @@ const getHistory = async (playerID: number) => {
     let history: PlayerHistory | null = null;
     const response = await axios.get(`${baseUrl}/${playerID}/history?api_key=${process.env.REACT_APP_API_KEY}`);
 
-    if(response && response.data){
+    if(response && response.data && response.data.player){
         let player = response.data.player;
         let rankHistory = response.data.rank_history;
         let ratingHistory = response.data.rank_history;
 
         history = new PlayerHistory();
 
-        if(player){
-            history.ID = parseInt(player.player_id, 10);
-            history.FirstName = player.first_name;
-            history.LastName = player.last_name;
-        }
+        history.ID = parseInt(player.player_id, 10);
+        history.FirstName = player.first_name;
+        history.LastName = player.last_name;
 
         if(rankHistory && Array.isArray(rankHistory)){
             history.RankHistory = rankHistory.map((rank: any) => {

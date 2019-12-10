@@ -1,11 +1,11 @@
 import axios from 'axios';
 import calendarService from '../../../services/ifpa/calendar';
-import { calendarEvents } from '../../helpers/mockData';
+import { calendarEventsData } from '../../helpers/mockData';
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 jest.mock('axios');
 
-describe('Calendar service', () => {
+describe('Calendar service - search Method', () => {
     it('returns null when there is no calendar data', async () => {
         mockedAxios.get.mockImplementationOnce(() => {
             return Promise.resolve({ data: {} });
@@ -18,7 +18,7 @@ describe('Calendar service', () => {
     it('returns an array of one calendar event when there is only one event', async () => {
         mockedAxios.get.mockImplementationOnce(() => {
             return Promise.resolve({ data: {
-                calendar: [ calendarEvents[0] ]
+                calendar: [ calendarEventsData[0] ]
             } });
         });
 
@@ -35,7 +35,7 @@ describe('Calendar service', () => {
     it('returns an array of many calendar events when there are many events', async () => {
         mockedAxios.get.mockImplementationOnce(() => {
             return Promise.resolve({ data: {
-                calendar: calendarEvents
+                calendar: calendarEventsData
             } });
         });
 
@@ -52,7 +52,7 @@ describe('Calendar service', () => {
     it('returns valid calendar event data', async () => {
         mockedAxios.get.mockImplementationOnce(() => {
             return Promise.resolve({ data: {
-                calendar: [ calendarEvents[0] ]
+                calendar: [ calendarEventsData[0] ]
             } });
         });
 
