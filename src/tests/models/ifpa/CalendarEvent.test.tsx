@@ -18,8 +18,6 @@ describe('CalendarEvent Model', () => {
         expect(event.ZipCode).not.toBeDefined();
         expect(event.Country).not.toBeDefined();
         expect(event.Website).not.toBeDefined();
-        expect(event.EuroChampFlag).not.toBeDefined();
-        expect(event.PapaCircuitFlag).not.toBeDefined();
         expect(event.DirectorName).not.toBeDefined();
         expect(event.Lat).not.toBeDefined();
         expect(event.Long).not.toBeDefined();
@@ -28,6 +26,8 @@ describe('CalendarEvent Model', () => {
         expect(event.Distance).not.toBeDefined();
         expect(event.StartDate).not.toBeDefined();
         expect(event.EndDate).not.toBeDefined();
+        expect(event.AveragePlayers).not.toBeDefined();
+        expect(event.AveragePoints).not.toBeDefined();
     });
 
     it('can be initialized with args', () => {
@@ -42,8 +42,6 @@ describe('CalendarEvent Model', () => {
             ZipCode: '11111',
             Country: 'USA',
             Website: 'http://www.pinstats.com',
-            EuroChampFlag: false,
-            PapaCircuitFlag: true,
             DirectorName: 'Test Director',
             Lat: 59.3022,
             Long: 18.0149,
@@ -51,7 +49,9 @@ describe('CalendarEvent Model', () => {
             PrivateFlag: true,
             Distance: 5,
             StartDate: new Date('2014-08-22'),
-            EndDate: new Date('2014-08-23')
+            EndDate: new Date('2014-08-23'),
+            AveragePlayers: 6,
+            AveragePoints: 7
         });
 
         expect(event).toBeDefined();
@@ -67,8 +67,6 @@ describe('CalendarEvent Model', () => {
         expect(event.ZipCode).toBe('11111');
         expect(event.Country).toBe('USA');
         expect(event.Website).toBe('http://www.pinstats.com');
-        expect(event.EuroChampFlag).toBe(false);
-        expect(event.PapaCircuitFlag).toBe(true);
         expect(event.DirectorName).toBe('Test Director');
         expect(event.Lat).toBe(59.3022);
         expect(event.Long).toBe(18.0149);
@@ -77,5 +75,7 @@ describe('CalendarEvent Model', () => {
         expect(event.Distance).toBe(5);
         expect(event.StartDate).toStrictEqual(new Date(2014, 7, 22)); //Month is zero-based
         expect(event.EndDate).toStrictEqual(new Date(2014, 7, 23)); //Month is zero-based
+        expect(event.AveragePlayers).toBe(6);
+        expect(event.AveragePoints).toBe(7);
     });
 });

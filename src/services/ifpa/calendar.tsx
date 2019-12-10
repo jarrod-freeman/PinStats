@@ -13,23 +13,23 @@ const search = async (address: string, radius: number) => {
                 ID: parseInt(result.calendar_id, 10),
                 TournamentID: parseInt(result.tournament_id, 10),
                 TournamentName: result.tournament_name,
-                Address1: result.addres1,
+                Address1: result.address1,
                 Address2: result.address2,
                 City: result.city,
                 State: result.state,
                 ZipCode: result.zipcode,
                 Country: result.country,
                 Website: result.website,
-                EuroChampFlag: result.euro_champ_flag,
-                PapaCircuitFlag: result.papa_circuit_flag,
                 DirectorName: result.director_name,
                 Lat: parseFloat(result.latitude),
                 Long: parseFloat(result.longitude),
                 Details: result.details,
-                PrivateFlag: result.private_flag,
+                PrivateFlag: result.private_flag ? result.private_flag.toLowerCase() === 'y' : false,
                 Distance: parseInt(result.distance, 10),
                 StartDate: new Date(result.start_date),
-                EndDate: new Date(result.end_date)
+                EndDate: new Date(result.end_date),
+                AveragePlayers: parseInt(result.average_players, 10),
+                AveragePoints: parseInt(result.average_points, 10)
             });
         });
     }

@@ -12,14 +12,14 @@ export default class CalendarEvent{
     ZipCode: string;
     Country: string;
     Website: string;
-    EuroChampFlag: boolean;
-    PapaCircuitFlag: boolean;
     DirectorName: string;
     Lat: number;
     Long: number;
     Details: string;
     PrivateFlag: boolean;
     Distance: number;
+    AveragePlayers: number;
+    AveragePoints: number;
 
     get StartDate(): Date {
         return this.startDate;
