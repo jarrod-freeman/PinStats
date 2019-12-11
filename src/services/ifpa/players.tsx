@@ -39,7 +39,7 @@ const getHistory = async (playerID: number) => {
     if(response && response.data && response.data.player){
         let player = response.data.player;
         let rankHistory = response.data.rank_history;
-        let ratingHistory = response.data.rank_history;
+        let ratingHistory = response.data.rating_history;
 
         history = new PlayerHistory();
 

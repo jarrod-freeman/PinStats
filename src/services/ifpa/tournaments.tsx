@@ -7,12 +7,14 @@ import Location from '../../models/ifpa/Location';
 const baseUrl = 'https://api.ifpapinball.com/v1/tournament';
 
 const getTournaments = async (startPos: number, count: number) => {
-    let results: TournamentList = new TournamentList();
+    let results: TournamentList | null = null;
     const response = await axios.get(`${baseUrl}/list?api_key=${process.env.REACT_APP_API_KEY}&start_pos=${startPos}&count=${count}`);
 
-    if(response && response.data){
+    if(response && response.data && (response.data.tournament || response.data.total_results)){
+        results = new TournamentList();
+
         if(response.data.tournament){
-            var tournaments = response.data.tournament.map((x: any) => {
+            const tournaments = response.data.tournament.map((x: any) => {
                 return new Tournament({
                     ID: parseInt(x.tournament_id, 10),
                     Name: x.tournament_name,

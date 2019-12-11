@@ -99,7 +99,41 @@ const playersData: any = [{
     'wppr_rank': '5'
 }];
 
+const playerHistoryData: any = [{
+    player: {
+        'player_id': '1',
+        'first_name': 'TestFirst1',
+        'last_name': 'TestLast1'
+    },
+    rank_history: [{
+        'rank_date': '2019-12-01',
+        'rank_position': '14468',
+        'wppr_points': '1.2500'
+    }],
+    rating_history: [{
+        'rating_date': '2018-09-18',
+        'rating': '1156.1530'
+    }]
+}];
+
+const tournamentsData: any = [{
+    tournament: [{
+        'tournament_id': '1',
+        'tournament_name': 'Test Tournament',
+        'event_name': 'Main Tournament',
+        'event_date': '2019-12-06',
+        'winner_name': 'Test Winner',
+        'winner_player_id': '2',
+        'country_code': 'US',
+        'country_name': 'United States',
+        'player_count': '3'
+    }],
+    total_results: 100
+}];
+
 export {
     calendarEventsData,
-    playersData
+    playersData,
+    playerHistoryData,
+    tournamentsData
 };

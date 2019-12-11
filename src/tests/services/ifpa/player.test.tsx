@@ -1,6 +1,7 @@
 import axios from 'axios';
 import playerService from '../../../services/ifpa/players';
-import { playersData } from '../../helpers/mockData';
+import { playersData, playerHistoryData } from '../../helpers/mockData';
+import PlayerHistory from '../../../models/ifpa/PlayerHistory';
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 jest.mock('axios');
@@ -83,5 +84,74 @@ describe('Player service - getHistory Method', () => {
         const playerHistory = await playerService.getHistory(1);
 
         expect(playerHistory).toBeNull();
+    });
+
+    it('returns player history when there is player history data', async () => {
+        mockedAxios.get.mockImplementationOnce(() => {
+            return Promise.resolve({ data: {
+                player: playerHistoryData[0].player,
+                rank_history: playerHistoryData[0].rank_history,
+                rating_history: playerHistoryData[0].rating_history
+            } });
+        });
+
+        const playerHistory = await playerService.getHistory(1);
+
+        expect(playerHistory).not.toBeNull();
+        expect(playerHistory).toBeInstanceOf(PlayerHistory);
+
+        if(playerHistory instanceof PlayerHistory){
+            expect(playerHistory.RankHistory).toBeDefined();
+            expect(Array.isArray(playerHistory.RankHistory)).toBe(true);
+            expect(playerHistory.RankHistory.length).toBe(1);
+            expect(playerHistory.RatingHistory).toBeDefined();
+            expect(Array.isArray(playerHistory.RatingHistory)).toBe(true);
+            expect(playerHistory.RatingHistory.length).toBe(1);
+        }
+    });
+
+    it('returns player history even if associated history is missing', async () => {
+        mockedAxios.get.mockImplementationOnce(() => {
+            return Promise.resolve({ data: {
+                player: playerHistoryData[0].player
+            } });
+        });
+
+        const playerHistory = await playerService.getHistory(1);
+
+        expect(playerHistory).not.toBeNull();
+        expect(playerHistory).toBeInstanceOf(PlayerHistory);
+
+        if(playerHistory instanceof PlayerHistory){
+            expect(playerHistory.RankHistory).toBeDefined();
+            expect(Array.isArray(playerHistory.RankHistory)).toBe(true);
+            expect(playerHistory.RankHistory.length).toBe(0);
+            expect(playerHistory.RatingHistory).toBeDefined();
+            expect(Array.isArray(playerHistory.RatingHistory)).toBe(true);
+            expect(playerHistory.RatingHistory.length).toBe(0);
+        }
+    });
+
+    it('returns valid player', async () => {
+        mockedAxios.get.mockImplementationOnce(() => {
+            return Promise.resolve({ data: {
+                player: playerHistoryData[0].player,
+                rank_history: playerHistoryData[0].rank_history,
+                rating_history: playerHistoryData[0].rating_history
+            } });
+        });
+
+        const playerHistory = await playerService.getHistory(1);
+
+        if(playerHistory instanceof PlayerHistory){
+            expect(playerHistory.ID).toBe(1);
+            expect(playerHistory.FirstName).toBe('TestFirst1');
+            expect(playerHistory.LastName).toBe('TestLast1');
+            expect(playerHistory.RankHistory[0].Date).toStrictEqual(new Date(2019, 11, 1));
+            expect(playerHistory.RankHistory[0].Points).toBe(1.2500);
+            expect(playerHistory.RankHistory[0].Rank).toBe(14468);
+            expect(playerHistory.RatingHistory[0].Date).toStrictEqual(new Date(2018, 8, 18));
+            expect(playerHistory.RatingHistory[0].Rating).toBe(1156.1530);
+        }
     });
 });

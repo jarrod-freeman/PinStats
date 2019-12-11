@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow, TableFooter, TablePag
 import TablePaginationActions from '../common/TablePaginationActions';
 import tournamentService from '../../services/ifpa/tournaments';
 import TournamentDetails from '../ifpa/TournamentDetails';
+import TournamentList from '../../models/ifpa/TournamentList';
 import { useHistory } from 'react-router-dom';
 
 const TournamentPage: FunctionComponent = () => {
@@ -32,10 +33,12 @@ const TournamentPage: FunctionComponent = () => {
         let isSubscribed = true;
 
         tournamentService.getTournaments(page * rowsPerPage, rowsPerPage)
-            .then(response => {
+            .then(list => {
                 if(isSubscribed){
-                    setTournamentList(response.Tournaments);
-                    setTournamentCount(response.TotalCount);
+                    if(list instanceof TournamentList){
+                        setTournamentList(list.Tournaments);
+                        setTournamentCount(list.TotalCount);
+                    }
                 }
             });
 
