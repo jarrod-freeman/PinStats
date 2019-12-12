@@ -116,7 +116,7 @@ const playerHistoryData: any = [{
     }]
 }];
 
-const tournamentsData: any = [{
+const tournamentListData: any = [{
     tournament: [{
         'tournament_id': '1',
         'tournament_name': 'Test Tournament',
@@ -131,9 +131,41 @@ const tournamentsData: any = [{
     total_results: 100
 }];
 
+const tournamentData: any = [{
+    'tournament_id': '1',
+    'tournament_name': 'Test Tournament',
+    'tournament_type': 'Tournament',
+    'prestige_flag': 'Y',
+    'periodic_flag': 'N',
+    'city': 'Columbus',
+    'state': 'OH',
+    'country_name': 'United States',
+    'contact_name': 'Test Contact',
+    'website': 'https://www.pinstats.com/',
+    'events': [{
+        'event_date': '2019-12-06',
+        'winner_player_id': '2',
+        'winner_first_name': 'FirstName',
+        'winner_last_name': 'LastName'
+    }]
+},
+{
+    'tournament_id': '2',
+    'tournament_name': 'Test Tournament',
+    'tournament_type': 'Tournament',
+    'prestige_flag': 'Y',
+    'periodic_flag': 'N',
+    'city': 'Columbus',
+    'state': 'OH',
+    'country_name': 'United States',
+    'contact_name': 'Test Contact',
+    'website': 'https://www.pinstats.com/'
+}];
+
 export {
     calendarEventsData,
     playersData,
     playerHistoryData,
-    tournamentsData
+    tournamentListData,
+    tournamentData
 };

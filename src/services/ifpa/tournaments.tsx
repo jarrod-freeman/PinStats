@@ -47,34 +47,32 @@ const getTournament = async (tournamentID: number, eventName: string) => {
     let tournament: Tournament | null = null;
     const response = await axios.get(`${baseUrl}/${tournamentID}?api_key=${process.env.REACT_APP_API_KEY}`);
 
-    if(response && response.data){
-        if(response.data.tournament){
-            tournament = new Tournament({
-                ID: parseInt(response.data.tournament.tournament_id, 10),
-                Name: response.data.tournament.tournament_name,
-                Website: response.data.tournament.website,
-                ContactName: response.data.tournament.contact_name,
-                Location: new Location({
-                    City: response.data.tournament.city,
-                    State: response.data.tournament.state,
-                    CountryName: response.data.tournament.country_name,
-                })
-            });
+    if(response && response.data && response.data.tournament){
+        tournament = new Tournament({
+            ID: parseInt(response.data.tournament.tournament_id, 10),
+            Name: response.data.tournament.tournament_name,
+            Website: response.data.tournament.website,
+            ContactName: response.data.tournament.contact_name,
+            Location: new Location({
+                City: response.data.tournament.city,
+                State: response.data.tournament.state,
+                CountryName: response.data.tournament.country_name,
+            })
+        });
 
-            if(response.data.tournament.events){
-                tournament.Events = response.data.tournament.events.map((event: any) => {
-                    //Events is an array, but it appears that there is only ever a single event per tournament.
-                    //Despite what the documentation says, the event_name is not returned via this api method. Instead
-                    //we'll just pass it from the previous page where the API does return it when listing tournaments.
-                    return new Event({
-                        ID: parseInt(response.data.tournament.tournament_id, 10),
-                        Date: new Date(event.event_date),
-                        Name: eventName, //The API doesn't return the event name (like it should...) so we have to pass it into this function.
-                        WinnerID: parseInt(event.winner_player_id, 10),
-                        WinnerName: event.winner_first_name + ' ' + event.winner_last_name
-                    });
+        if(response.data.tournament.events){
+            tournament.Events = response.data.tournament.events.map((event: any) => {
+                //Events is an array, but it appears that there is only ever a single event per tournament.
+                //Despite what the documentation says, the event_name is not returned via this api method. Instead
+                //we'll just pass it from the previous page where the API does return it when listing tournaments.
+                return new Event({
+                    ID: parseInt(response.data.tournament.tournament_id, 10),
+                    Date: new Date(event.event_date),
+                    Name: eventName, //The API doesn't return the event name (like it should...) so we have to pass it into this function.
+                    WinnerID: parseInt(event.winner_player_id, 10),
+                    WinnerName: event.winner_first_name + ' ' + event.winner_last_name
                 });
-            }
+            });
         }
     }
 
