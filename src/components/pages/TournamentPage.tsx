@@ -118,15 +118,15 @@ const TournamentPage: FunctionComponent = () => {
     };
 
     return (
-        <div>
+        <section>
             <h3>{ tournament ? 'Tournament' : 'Tournaments' }</h3>
-            <div className="tournaments" style={{ display: tournament ? 'none' : 'block' }}>
+            <div className='tournaments' style={{ display: tournament ? 'none' : 'block' }}>
                 {displayTournamentTable()}
             </div>
-            <div style={{ display: tournament ? 'block' : 'none' }}>
+            <div className='tournamentDetails' style={{ display: tournament ? 'block' : 'none' }}>
                 {displayTournament()}
             </div>
-        </div>
+        </section>
     );
 };
 
